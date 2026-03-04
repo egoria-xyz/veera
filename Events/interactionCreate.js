@@ -9,16 +9,19 @@ module.exports = {
     async execute(interaction) {
         const user = interaction.user;
 
+        // -- Bloquer tout ce qui n'est pas une commande slash
         if(!interaction.isChatInputCommand()) return;
 
+        // Récupérer le nom de la commande et la stocker dans la variable 'command'
         const command = interaction.client.commands.get(interaction.commandName);
 
+        // Si la commande n'existe pas on avertis la console et on annule
         if(!command) {
             console.log(color.yellow(`⚠️ → No command matching "${interaction.commandName}" was found.`));
             return;
         }
 
-        try {
+        try { // exécuter la commande
             await command.execute(interaction);
             console.log(color.green(`📁 → ${user.username} used ${interaction.commandName} command.`));
         } catch (error) {

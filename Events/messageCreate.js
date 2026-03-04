@@ -21,7 +21,7 @@ module.exports = {
 
             setTimeout(async () => {
                 await message.channel.send(`\🔥 <@&${bumpRoleId}> Vous pouvez bump le serveur sur Discord ! (</bump:947088344167366698>)`);
-            }, 60 * 1000); // Notifie toutes les 2h (Disboard)
+            }, 2 * 60 * 60 * 1000); // Notifie toutes les 2h (Disboard)
         }
     }
 }

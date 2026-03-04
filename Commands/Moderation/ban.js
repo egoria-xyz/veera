@@ -21,11 +21,11 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
 
     async execute(interaction) {
-        if (!interaction.inGuild()) {
+        if (!interaction.inGuild()) { // Si la commande est exécutée hors du serveur on ignore
             return;
         }
 
-        if (!interaction.memberPermissions?.has(PermissionFlagsBits.BanMembers)) {
+        if (!interaction.memberPermissions?.has(PermissionFlagsBits.BanMembers)) { // Si l'utilisateur n'a pas la permission de bannir les membres on ignore
             return;
         }
 
@@ -55,9 +55,9 @@ module.exports = {
             return interaction.reply({ content: "🚩 → Vous n'avez pas le droit de bannir le Fondateur."});
         }
 
-        const authorHighest = interaction.member.roles?.highest?.position ?? 0;
-        const targetHighest = targetMember.roles?.highest?.position ?? 0;
-        const meHighest = me.roles?.highest?.position ?? 0;
+        const authorHighest = interaction.member.roles?.highest?.position ?? 0; // Récupérer le rôle le plus haut de l'utilisateur
+        const targetHighest = targetMember.roles?.highest?.position ?? 0; // récupérer le rôle le plus haut de l'utilisateur à bannir
+        const meHighest = me.roles?.highest?.position ?? 0; // Récupérer le rôle le plus haut du bot
 
         if (authorHighest <= targetHighest && interaction.user.id !== interaction.guild.ownerId) {
             return interaction.reply({ content: "🚩 → Vous n'avez pas la possibilité de bannir un membre avec un rôle égal ou suppérieur à vous.", flags: MessageFlags.Ephemeral });
@@ -76,7 +76,7 @@ module.exports = {
         }
 
         try {
-            await targetMember.ban({ reason });
+            await targetMember.ban({ reason }); // Bannir le membre avec la raison
 
             const banEmbed = new EmbedBuilder()
                 .setAuthor({ name: interaction.user.username + " - BAN ⚖️", iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })

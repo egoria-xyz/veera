@@ -20,11 +20,11 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
 
     async execute(interaction) {
-        if (!interaction.inGuild()) {
+        if (!interaction.inGuild()) { // Si la commande est exécutée hors du serveur on ignore
             return;
         }
 
-        if (!interaction.memberPermissions?.has(PermissionFlagsBits.BanMembers)) {
+        if (!interaction.memberPermissions?.has(PermissionFlagsBits.BanMembers)) { // Si l'utilisateur n'a pas la permission de bannir les membres on ignore
             return;
         }
 
@@ -38,7 +38,7 @@ module.exports = {
         }
 
         try {
-            await interaction.guild.members.unban(target.id, { reason });
+            await interaction.guild.members.unban(target.id, { reason }); // Révoquer (annuler) le bannissement de l'utilisateur
 
             console.log(color.green(`🛡️ → The user ${target.username} was unban by ${interaction.user.username} for the reason: ${reason}`));
 

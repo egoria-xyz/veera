@@ -8,25 +8,26 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
         if (interaction.isStringSelectMenu() && interaction.customId === 'ticket_select') {
-            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+            await interaction.deferReply({ flags: MessageFlags.Ephemeral }); // Préparer la réponse à l'utilisateur en diférée
 
             const ticketType = interaction.values[0];
             const ticketInfo = ticketConfig.ticketTypes[ticketType];
             const userName = interaction.user.username.toLowerCase().replace(/[^a-z0-9]/g, '-');
             const channelName = `${ticketType}-${userName}`;
 
+            // Vérifier si un ticket existe déjà pour l'utilisateur
             const existingTicket = interaction.guild.channels.cache.find(
                 channel => channel.name === channelName && channel.parentId === ticketConfig.ticketCategoryId
             );
 
-            if (existingTicket) {
+            if (existingTicket) { // Refuser si un ticket est déjà ouvert
                 return interaction.editReply({
                     content: `🚩 → Vous avez déjà un ticket ouvert : <#${existingTicket.id}>`,
                 });
             }
 
             try {
-                const permissions = [
+                const permissions = [ // Définir les permissions du ticket (fermé à tous, ouvert pour l'utilisateur et l'équipe)
                     {
                         id: interaction.guild.id,
                         deny: [PermissionFlagsBits.ViewChannel],

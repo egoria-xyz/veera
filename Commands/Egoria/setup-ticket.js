@@ -10,22 +10,22 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     
     async execute(interaction) {
-        const channel = interaction.guild.channels.cache.get(ticketConfig.ticketChannelId);
+        const channel = interaction.guild.channels.cache.get(ticketConfig.ticketChannelId); // Récupérer le salon dans la config
         
-        if (!channel) {
+        if (!channel) { // Si le salon n'existe pas on prévient l'utilisateur
             return interaction.reply({
                 content: '🚩 → Le salon de tickets configuré est introuvable !',
                 flags: MessageFlags.Ephemeral
             });
         }
 
-        const embed = new EmbedBuilder()
+        const embed = new EmbedBuilder() // Créer lembed
             .setColor(0xD8D262)
             .setTitle('🎫 Contacter le support')
             .setDescription('Sélectionnez le type de ticket que vous souhaitez ouvrir dans le menu déroulant ci-dessous.\n\n')
             .setTimestamp();
 
-        const selectMenu = new StringSelectMenuBuilder()
+        const selectMenu = new StringSelectMenuBuilder() // Créer un menu déroulant de sélection
             .setCustomId('ticket_select')
             .setPlaceholder('Sélectionnez un type de ticket')
             .addOptions(
@@ -37,10 +37,10 @@ module.exports = {
                 }))
             );
 
-        const row = new ActionRowBuilder().addComponents(selectMenu);
+        const row = new ActionRowBuilder().addComponents(selectMenu); // Définir et appeler le menun déroulant
 
         try {
-            await channel.send({
+            await channel.send({ // Envoyer l'embed avec le menu déroulant dans le salon
                 embeds: [embed],
                 components: [row]
             });

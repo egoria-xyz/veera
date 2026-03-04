@@ -29,15 +29,15 @@ module.exports = {
         const channel = interaction.client.channels.cache.get("1465526781430861912");
 
         try {
-            let messages = await interaction.channel.messages.fetch({ limit: 100 });
+            let messages = await interaction.channel.messages.fetch({ limit: 100 }); // Récupérer les 100 derniers messages du salon
 
-            if (targetUser) {
+            if (targetUser) { // Si un utilisateur est ciblé, on supprime seulement le nombre voulu de SES messages
                 messages = messages.filter(msg => msg.author.id === targetUser.id).first(amount);
-            } else {
+            } else { // Si personne n'est ciblé on supprime le nombre voulu de messages
                 messages = messages.first(amount);
             }
 
-            const deleted = await interaction.channel.bulkDelete(messages, true);
+            const deleted = await interaction.channel.bulkDelete(messages, true); // Lancer l'action choisie plus haut
 
             const embed = new EmbedBuilder()
                 .setAuthor({ name: interaction.user.username + " 🗑️ Messages supprimés", IconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
