@@ -1,0 +1,29 @@
+{
+  "name": "veera",
+  "version": "5.4.2",
+  "description": "Dépôt officiel du bot Veera, un bot Discord multifonctions.",
+  "homepage": "https://github.com/egoria-xyz/veera#readme",
+  "bugs": {
+    "url": "https://github.com/egoria-xyz/veera/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egoria-xyz/veera.git"
+  },
+  "license": "BSL-1.0",
+  "author": "neophit",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "colors": "^1.4.0",
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.3.1",
+    "fs": "^0.0.1-security",
+    "mysql2": "^3.18.2",
+    "rcon-client": "^4.2.5"
+  }
+}
