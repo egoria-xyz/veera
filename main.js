@@ -6,13 +6,13 @@ const path = require('node:path');
 const color = require('colors');
 require('dotenv').config({ quiet: true, debug: false });
 
-const client = new Client({ // Déclarer les intents du bot
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-    ]
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers
+	],
 });
 
 const eventsPath = path.join(__dirname, 'Events'); // Charger les Events reader
