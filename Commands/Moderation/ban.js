@@ -36,7 +36,7 @@ module.exports = {
 
         const targetUser = interaction.options.getUser('utilisateur', true);
         const reason = interaction.options.getString('raison', true) + ` || Banni par (ID: ${interaction.user.id}) (Pseudo: ${interaction.user.username})`;
-        const channel = interaction.client.channels.cache.get("1465526781430861912");
+        const channel = interaction.client.channels.cache.get("1467642371104833617");
 
         if (targetUser.id === interaction.user.id) {
             return interaction.reply({ content: "🚩 → Vous n'avez pas la possibilité de vous bannir vous-même."});

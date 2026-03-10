@@ -26,7 +26,7 @@ module.exports = {
     async execute(interaction) {
         const amount = interaction.options.getInteger('nombre');
         const targetUser = interaction.options.getUser('utilisateur') || null;
-        const channel = interaction.client.channels.cache.get("1465526781430861912");
+        const channel = interaction.client.channels.cache.get("1467642371104833617");
 
         try {
             let messages = await interaction.channel.messages.fetch({ limit: 100 }); // Récupérer les 100 derniers messages du salon

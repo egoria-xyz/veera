@@ -35,7 +35,7 @@ module.exports = {
 
         const target = interaction.options.getUser('utilisateur');
         const reason = interaction.options.getString('raison');
-        const channel = interaction.client.channels.cache.get("1465526781430861912");
+        const channel = interaction.client.channels.cache.get("1467642371104833617");
 
         if (target.id === interaction.user.id) {
             return interaction.reply({ content: "🚩 → Vous n'avez pas la possibilité de vous expulser vous-même." });
